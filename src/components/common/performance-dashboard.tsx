@@ -180,10 +180,10 @@ export const PerformanceDashboard = () => {
                                 <div className="flex items-center justify-between mb-2">
                                     <metric.icon className="h-4 w-4 text-muted-foreground" />
                                     <span className={`text-xs font-medium px-2 py-1 rounded-full ${getScoreStatus(metric.key, metric.value) === 'Good'
-                                            ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                                            : getScoreStatus(metric.key, metric.value) === 'Needs Improvement'
-                                                ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
-                                                : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
+                                        ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                        : getScoreStatus(metric.key, metric.value) === 'Needs Improvement'
+                                            ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
+                                            : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
                                         }`}>
                                         {getScoreStatus(metric.key, metric.value)}
                                     </span>
@@ -221,10 +221,10 @@ export const PerformanceDashboard = () => {
                                         <span className="text-sm text-muted-foreground ml-1">{metric.unit}</span>
                                     </div>
                                     <span className={`text-xs px-2 py-1 rounded-full ${getScoreStatus(metric.key, metric.value) === 'Good'
-                                            ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                                            : getScoreStatus(metric.key, metric.value) === 'Needs Improvement'
-                                                ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
-                                                : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
+                                        ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                                        : getScoreStatus(metric.key, metric.value) === 'Needs Improvement'
+                                            ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
+                                            : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
                                         }`}>
                                         {getScoreStatus(metric.key, metric.value)}
                                     </span>

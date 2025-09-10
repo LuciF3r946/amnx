@@ -25,8 +25,8 @@ const socialLinks = [
     {
         icon: Linkedin,
         name: 'LinkedIn',
-        url: 'https://linkedin.com/in/yourname',
-        handle: '/in/yourname'
+        url: 'https://linkedin.com/in/amanjot-singh946',
+        handle: '/in/amanjot-singh946'
     },
 ]
 
