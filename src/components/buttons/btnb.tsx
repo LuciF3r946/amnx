@@ -51,9 +51,9 @@ const StyledWrapper = styled.div`
     justify-content: center;
     gap: 12px;
     font-size: 14px;
-    background: linear-gradient(135deg, oklch(60% 0.18 280), oklch(65% 0.2 300));
-    color: oklch(98% 0 0);
-    border: solid 2px oklch(60% 0.18 280);
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+    color: hsl(var(--primary-foreground));
+    border: solid 2px hsl(var(--primary));
     height: 52px;
     padding: 0px 24px;
     border-radius: 26px;
@@ -85,8 +85,8 @@ const StyledWrapper = styled.div`
     transition: all 0.2s ease;
   }
   .button:active {
-    background-image: linear-gradient(#313ed7, #3470fa);
-    border-color: #313ed7;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary) / 0.7));
+    border-color: hsl(var(--primary));
     transform: scale(0.95);
   }
 
@@ -143,7 +143,7 @@ const StyledWrapper = styled.div`
     width: 6px;
     height: 6px;
     transform: translate(-50%, -50%);
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     border-radius: 100%;
   }
   .icon::after {
@@ -156,17 +156,17 @@ const StyledWrapper = styled.div`
     height: 33px;
     background-color: transparent;
     border-radius: 12px 22px 2px 2px;
-    border-right: solid 2px oklch(98% 0 0);
+    border-right: solid 2px hsl(var(--primary-foreground));
     border-top: solid 2px transparent;
   }
   .icon .text-icon {
-    color: oklch(98% 0 0);
+    color: hsl(var(--primary-foreground));
     position: absolute;
     font-size: 12px;
     left: -37px;
     top: -38px;
     font-weight: 500;
-    text-shadow: 0 0 8px oklch(98% 0 0 / 0.5);
+    text-shadow: 0 0 8px hsl(var(--primary-foreground) / 0.5);
   }
   .icon svg {
     width: 20px;
@@ -176,14 +176,14 @@ const StyledWrapper = styled.div`
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .button:hover .icon svg {
-    border: solid 2px oklch(98% 0 0);
-    filter: drop-shadow(0 0 8px oklch(98% 0 0 / 0.5));
+    border: solid 2px hsl(var(--primary-foreground));
+    filter: drop-shadow(0 0 8px hsl(var(--primary-foreground) / 0.5));
   }
   .padding-left {
     position: absolute;
     width: 20px;
     height: 2px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     left: 0;
     top: 50%;
     transform: translateY(-50%);
@@ -192,7 +192,7 @@ const StyledWrapper = styled.div`
     content: "";
     width: 2px;
     height: 10px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     position: absolute;
     left: 0;
     top: 50%;
@@ -202,7 +202,7 @@ const StyledWrapper = styled.div`
     content: "";
     width: 2px;
     height: 10px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     position: absolute;
     right: 0;
     top: 50%;
@@ -212,7 +212,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     width: 30px;
     height: 2px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     left: -24px;
     top: 11px;
     transform: rotate(-50deg);
@@ -225,11 +225,11 @@ const StyledWrapper = styled.div`
     width: 6px;
     height: 6px;
     transform: translate(-50%, -50%);
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     border-radius: 100%;
   }
   .padding-left-text {
-    color: oklch(98% 0 0);
+    color: hsl(var(--primary-foreground));
     font-size: 12px;
     position: absolute;
     white-space: nowrap;
@@ -237,14 +237,14 @@ const StyledWrapper = styled.div`
     bottom: 30px;
     left: -67px;
     font-weight: 500;
-    text-shadow: 0 0 8px oklch(98% 0 0 / 0.5);
+    text-shadow: 0 0 8px hsl(var(--primary-foreground) / 0.5);
   }
 
   .padding-right {
     position: absolute;
     width: 20px;
     height: 2px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     right: 0;
     top: 50%;
     transform: translateY(-50%);
@@ -253,7 +253,7 @@ const StyledWrapper = styled.div`
     content: "";
     width: 2px;
     height: 10px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     position: absolute;
     left: 0;
     top: 50%;
@@ -263,7 +263,7 @@ const StyledWrapper = styled.div`
     content: "";
     width: 2px;
     height: 10px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     position: absolute;
     right: 0;
     top: 50%;
@@ -273,7 +273,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     width: 30px;
     height: 2px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     right: -24px;
     top: 11px;
     transform: rotate(50deg);
@@ -286,11 +286,11 @@ const StyledWrapper = styled.div`
     width: 6px;
     height: 6px;
     transform: translate(-50%, -50%);
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     border-radius: 100%;
   }
   .padding-right-text {
-    color: oklch(98% 0 0);
+    color: hsl(var(--primary-foreground));
     font-size: 12px;
     position: absolute;
     white-space: nowrap;
@@ -298,7 +298,7 @@ const StyledWrapper = styled.div`
     bottom: 34px;
     left: 21px;
     font-weight: 500;
-    text-shadow: 0 0 8px oklch(98% 0 0 / 0.5);
+    text-shadow: 0 0 8px hsl(var(--primary-foreground) / 0.5);
   }
   .background {
     position: absolute;
@@ -312,7 +312,7 @@ const StyledWrapper = styled.div`
     height: 53px;
     background-color: transparent;
     border-radius: 0px 0px 22px 22px;
-    border-right: solid 2px oklch(98% 0 0);
+    border-right: solid 2px hsl(var(--primary-foreground));
     border-bottom: solid 2px transparent;
   }
   .background::after {
@@ -322,17 +322,17 @@ const StyledWrapper = styled.div`
     bottom: -20px;
     width: 6px;
     height: 6px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     border-radius: 100%;
   }
   .background-text {
     position: absolute;
-    color: oklch(98% 0 0);
+    color: hsl(var(--primary-foreground));
     font-size: 12px;
     bottom: -70px;
     left: -115px;
     font-weight: 500;
-    text-shadow: 0 0 8px oklch(98% 0 0 / 0.5);
+    text-shadow: 0 0 8px hsl(var(--primary-foreground) / 0.5);
   }
   .border {
     position: absolute;
@@ -343,7 +343,7 @@ const StyledWrapper = styled.div`
     content: "";
     width: 15px;
     height: 15px;
-    border: solid 2px oklch(98% 0 0);
+    border: solid 2px hsl(var(--primary-foreground));
     position: absolute;
     right: 0%;
     top: 0;
@@ -354,7 +354,7 @@ const StyledWrapper = styled.div`
     content: "";
     width: 2px;
     height: 25px;
-    background-color: oklch(98% 0 0);
+    background-color: hsl(var(--primary-foreground));
     position: absolute;
     right: -10px;
     top: -15px;
@@ -362,13 +362,13 @@ const StyledWrapper = styled.div`
   }
   .border .border-text {
     position: absolute;
-    color: oklch(98% 0 0);
+    color: hsl(var(--primary-foreground));
     font-size: 12px;
     right: -112px;
     top: -30px;
     white-space: nowrap;
     font-weight: 500;
-    text-shadow: 0 0 8px oklch(98% 0 0 / 0.5);
+    text-shadow: 0 0 8px hsl(var(--primary-foreground) / 0.5);
   }`;
 
 export default Btnb;
