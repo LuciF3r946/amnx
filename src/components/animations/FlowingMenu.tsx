@@ -81,16 +81,12 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, hoverText }) => {
 };
 
 // Mobile-optimized menu item
-const MobileMenuItem: React.FC<MenuItemProps> = ({ link, text, hoverText }) => {
+const MobileMenuItem: React.FC<MenuItemProps> = ({ text, hoverText }) => {
     const [isExpanded, setIsExpanded] = React.useState(false);
 
     const handleToggle = (e: React.MouseEvent) => {
         e.preventDefault();
         setIsExpanded(!isExpanded);
-    };
-
-    const handleNavigate = () => {
-        window.location.href = link;
     };
 
     return (

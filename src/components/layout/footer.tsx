@@ -42,7 +42,7 @@ export function Footer() {
 
                         <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
                             Crafting exceptional digital experiences through innovative design and cutting-edge technology.
-                            <span className="text-foreground font-medium"> Let's build something extraordinary together.</span>
+                            <span className="text-foreground font-medium"> Let&apos;s build something extraordinary together.</span>
                         </p>
 
                         {/* Social Links */}

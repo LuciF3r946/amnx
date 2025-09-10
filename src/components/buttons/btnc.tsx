@@ -8,7 +8,7 @@ interface ButtonProps {
   href?: string;  // page to navigate
 }
 
-const Btnc: React.FC<ButtonProps> = ({ label = "Let's Start the project", href }) => {
+const Btnc: React.FC<ButtonProps> = ({ label = "Let's Start the project", href = "/" }) => {
   return (
     <StyledWrapper>
       <Link href={href} className="button">

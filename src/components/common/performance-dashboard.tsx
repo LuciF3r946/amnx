@@ -43,6 +43,7 @@ export const PerformanceDashboard = () => {
 
                 // Get connection info
                 if ('connection' in navigator) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const connection = (navigator as any).connection
                     setConnectionType(connection?.effectiveType || 'unknown')
                 }

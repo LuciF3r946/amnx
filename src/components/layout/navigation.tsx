@@ -15,7 +15,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, Home, User, FolderOpen, Award, Mail, ChevronRight, X } from 'lucide-react'
-import { Button, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui'
+import { Button, Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui'
 import { ThemeToggle } from '@/components/common'
 
 // Navigation configuration

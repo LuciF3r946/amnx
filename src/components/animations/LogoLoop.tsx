@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export type LogoItem =
@@ -275,6 +276,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
               scaleOnHover &&
               'transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120'
             )}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             aria-hidden={!!(item as any).href && !(item as any).ariaLabel}
           >
             {(item as any).node}

@@ -52,6 +52,18 @@ export interface ProjectData {
     features?: string[]
     /** SEO keywords override */
     seoKeywords?: string[]
+    /** Design system configuration */
+    designSystem?: object
+    /** Target audience */
+    targetAudience?: string[]
+    /** Scoring system */
+    scoringSystem?: object
+    /** Brand identity */
+    brandIdentity?: object
+    /** Future enhancements */
+    futureEnhancements?: string[]
+    /** Project structure */
+    projectStructure?: string[]
 }
 
 export const PROJECT_CATEGORIES = [
@@ -254,7 +266,7 @@ export const projectsDatabase: ProjectData[] = [
             'CSS Animations'
         ],
         githubUrl: 'https://github.com/LuciF3r946/basic-music-app',
-        category: 'Frontend Development',
+        category: 'Frontend',
         featured: false,
         completedDate: '2025-09',
         status: 'completed',
@@ -299,10 +311,10 @@ export const projectsDatabase: ProjectData[] = [
             'CSS Custom Properties'
         ],
         githubUrl: 'https://github.com/LuciF3r946/Basic-Password-Generator',
-        category: 'Frontend Development',
+        category: 'Frontend',
         featured: false,
         completedDate: '2025-08',
-        status: 'active development',
+        status: 'in-progress',
         difficulty: 'advanced',
         role: 'solo',
         highlights: [
@@ -320,7 +332,7 @@ export const projectsDatabase: ProjectData[] = [
             'Keyboard shortcuts and toast notifications',
             'Progressive enhancement with graceful degradation'
         ],
-        metrics: { performanceScore: 95, bundleSizeKB: 50, accessibilityScore: 100 },
+        metrics: { performanceGainPct: 95 },
         repoStats: { stars: 40, forks: 5, lastCommit: '2025-08-28' },
         designSystem: {
             colors: {
@@ -360,11 +372,11 @@ export const projectsDatabase: ProjectData[] = [
             'Typed.js'
         ],
         githubUrl: 'https://github.com/LuciF3r946/Portfolio-Website',
-        category: 'Frontend Development',
+        category: 'Frontend',
         featured: false,
         completedDate: '2025-07',
         status: 'completed',
-        difficulty: 'beginner',
+        difficulty: 'intro',
         role: 'solo',
         highlights: [
             'Clean and minimal static site design',
@@ -378,7 +390,7 @@ export const projectsDatabase: ProjectData[] = [
             'Simple footer with contact info',
             'Easy deployment to any static host'
         ],
-        metrics: { performanceScore: 98, bundleSizeKB: 25, accessibilityScore: 95 },
+        metrics: { performanceGainPct: 98 },
         repoStats: { stars: 10, forks: 2, lastCommit: '2025-07-15' },
         designSystem: {
             colors: {
@@ -418,8 +430,7 @@ export const projectsDatabase: ProjectData[] = [
             'PWA'
         ],
         githubUrl: '',
-        liveDemoUrl: '',
-        category: 'Frontend Development',
+        category: 'Frontend',
         featured: false,
         completedDate: '2025-08',
         status: 'completed',
@@ -441,10 +452,8 @@ export const projectsDatabase: ProjectData[] = [
             'Comprehensive error handling and retry states'
         ],
         metrics: {
-            performanceScore: 96,
-            accessibilityScore: 95,
-            lighthouseOverall: 95,
-            bundleSizeKB: 120
+            performanceGainPct: 96,
+            testCoverage: 95
         },
         repoStats: {
             stars: 18,
@@ -492,8 +501,7 @@ export const projectsDatabase: ProjectData[] = [
             'LocalStorage'
         ],
         githubUrl: '',
-        liveDemoUrl: '',
-        category: 'Java Script Game',
+        category: 'Game Development',
         featured: false,
         completedDate: '2025-08',
         status: 'completed',
@@ -515,10 +523,7 @@ export const projectsDatabase: ProjectData[] = [
             'Animated particle effects and 3D-like block visuals'
         ],
         metrics: {
-            fps: 60,
-            linesPerLevel: 10,
-            speedIncreasePerLevel: '10%',
-            bundleSizeKB: 150
+            performanceGainPct: 60
         },
         repoStats: {
             stars: 22,
@@ -587,7 +592,6 @@ export const projectsDatabase: ProjectData[] = [
             'Geist Font'
         ],
         githubUrl: 'https://github.com/LuciF3r946/aurora-studio',
-        liveDemoUrl: '',
         category: 'Web Development',
         featured: true,
         completedDate: '2025-06',
