@@ -19,6 +19,7 @@ import { Footer } from "@/components/layout";
 import { BackToTop } from "@/components/common";
 import { Toaster } from "@/components/ui";
 import { ClickSpark } from "@/components/animations";
+import StyledComponentsRegistry from "@/lib/registry";
 
 /**
  * Font Configuration
@@ -120,33 +121,35 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
       <body className={`${inter.variable} ${manrope.variable} ${poppins.variable} font-sans antialiased`}>
-        {/* Theme Provider - Handles dark/light mode with system preference support */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* Main Navigation - Fixed header with responsive menu */}
-          <Navigation />
+        <StyledComponentsRegistry>
+          {/* Theme Provider - Handles dark/light mode with system preference support */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* Main Navigation - Fixed header with responsive menu */}
+            <Navigation />
 
-          {/* Interactive Click Effects - Adds spark animations on user clicks */}
-          <ClickSpark sparkSize={10} sparkRadius={20} sparkCount={8} duration={500}>
-            {/* Main Content Area - Where all page content is rendered */}
-            <main className="min-h-screen">
-              {children}
-            </main>
-          </ClickSpark>
+            {/* Interactive Click Effects - Adds spark animations on user clicks */}
+            <ClickSpark sparkSize={10} sparkRadius={20} sparkCount={8} duration={500}>
+              {/* Main Content Area - Where all page content is rendered */}
+              <main className="min-h-screen">
+                {children}
+              </main>
+            </ClickSpark>
 
-          {/* Site Footer - Contact info and links */}
-          <Footer />
+            {/* Site Footer - Contact info and links */}
+            <Footer />
 
-          {/* Back to Top Button - Appears when user scrolls down */}
-          <BackToTop />
+            {/* Back to Top Button - Appears when user scrolls down */}
+            <BackToTop />
 
-          {/* Toast Notifications - For user feedback and alerts */}
-          <Toaster />
-        </ThemeProvider>
+            {/* Toast Notifications - For user feedback and alerts */}
+            <Toaster />
+          </ThemeProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

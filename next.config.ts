@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // Styled-components support
+  compiler: {
+    styledComponents: true,
+  },
+
   // Production optimizations
   experimental: {
     // Temporarily disabled optimizeCss to fix MIME type issues
