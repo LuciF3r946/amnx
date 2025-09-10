@@ -1,0 +1,14 @@
+<!-- Placeholder SVG for Fitness App -->
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fitnessGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#fitnessGrad)" />
+  <text x="50%" y="45%" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">Fitness</text>
+  <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">Tracker</text>
+  <circle cx="300" cy="150" r="30" fill="rgba(255,255,255,0.3)" />
+  <rect x="200" y="270" width="200" height="50" rx="25" fill="rgba(255,255,255,0.2)" />
+</svg>
