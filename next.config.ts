@@ -3,12 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
-  swcMinify: true,
   poweredByHeader: false,
 
   // Production optimizations
   experimental: {
-    optimizeCss: true,
+    // Temporarily disabled optimizeCss to fix MIME type issues
+    // optimizeCss: true,
     optimizePackageImports: ['@heroicons/react', 'lucide-react', 'react-icons'],
   },
 
@@ -48,6 +48,20 @@ const nextConfig: NextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+      // Specific headers for CSS files
+      {
+        source: '/_next/static/css/(.*)',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'text/css',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

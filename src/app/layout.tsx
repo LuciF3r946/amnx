@@ -111,6 +111,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        {/* Preconnect for faster font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      </head>
       <body className={`${inter.variable} ${manrope.variable} ${poppins.variable} font-sans antialiased`}>
         {/* Theme Provider - Handles dark/light mode with system preference support */}
         <ThemeProvider
