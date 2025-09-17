@@ -52,7 +52,7 @@ export function HeroDynamic() {
   const handleDownload = () => {
     // Create a temporary link element
     const link = document.createElement("a");
-    link.href = "/doc/Amanjot Singh Cv - sep 2025.pdf";
+    link.href = "/doc/Amanjot SIngh Cv - sep 2025.pdf";
     link.download = "Amanjot_Singh_CV.pdf";
     document.body.appendChild(link);
     link.click();
