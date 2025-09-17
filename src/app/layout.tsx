@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://Aman2Dev.com",
+    url: "https://Amnx.Dev",
     title: "Designer | Developer",
     description: "Portfolio showcasing creative design skills and technical expertise.",
     siteName: "Portfolio",
