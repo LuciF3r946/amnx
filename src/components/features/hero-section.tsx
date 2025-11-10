@@ -196,7 +196,7 @@ export function HeroDynamic() {
             className="text-5xl md:text-7xl font-bold leading-tight"
           >
             <span className="bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-              Amanjot Singh
+              Aman
             </span>
           </motion.h1>
 
