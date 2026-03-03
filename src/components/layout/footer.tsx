@@ -35,8 +35,13 @@ export function Footer() {
                             href="/"
                             className="inline-block text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity duration-200 mb-4"
                         >
-                            <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-                                AS
+                            <span className="group inline-flex items-center gap-3 cursor-pointer">
+
+
+                                {/* Initials / Name */}
+                                <span className="text-lg font-semibold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent tracking-wide transition-all duration-300 group-hover:from-primary group-hover:to-purple-500">
+                                    AS
+                                </span>
                             </span>
                         </Link>
 

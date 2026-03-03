@@ -11,7 +11,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, memo, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, Home, User, FolderOpen, Award, Mail, ChevronRight, X } from 'lucide-react'
@@ -40,16 +40,41 @@ function throttle(func: () => void, limit: number): () => void {
 }
 
 // Memoized desktop navigation item
-const DesktopNavItem = memo(({ item, pathname }: { item: typeof navigation[0], pathname: string }) => {
+const DesktopNavItem = memo(({ item, pathname, hoveredItem, onHover }: {
+    item: typeof navigation[0],
+    pathname: string,
+    hoveredItem: string | null,
+    onHover: (name: string | null) => void
+}) => {
     const isActive = pathname === item.href
+    const isHovered = hoveredItem === item.name
 
     return (
         <Link
             href={item.href}
-            className={`relative text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'
-                }`}
+            aria-current={isActive ? 'page' : undefined}
+            onMouseEnter={() => onHover(item.name)}
+            onMouseLeave={() => onHover(null)}
+            className={`relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+                isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+            }`}
         >
-            {item.name}
+            {/* Sliding hover pill */}
+            <AnimatePresence>
+                {isHovered && !isActive && (
+                    <motion.span
+                        className="absolute inset-0 rounded-lg bg-accent"
+                        layoutId="nav-hover-pill"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                )}
+            </AnimatePresence>
+
+            <span className="relative z-10">{item.name}</span>
+
             {isActive && (
                 <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-primary/60"
@@ -161,11 +186,16 @@ export function Navigation() {
     const pathname = usePathname()
     const [scrolled, setScrolled] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
+    const [scrollProgress, setScrollProgress] = useState(0)
+    const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
-    // Optimized scroll handler with throttling
+    // Optimized scroll handler with throttling — tracks progress
     const throttledHandleScroll = useMemo(
         () => throttle(() => {
-            setScrolled(window.scrollY > 50)
+            const currentY = window.scrollY
+            const docHeight = document.body.scrollHeight - window.innerHeight
+            setScrolled(currentY > 50)
+            setScrollProgress(docHeight > 0 ? (currentY / docHeight) * 100 : 0)
         }, 16), // ~60fps
         []
     )
@@ -206,12 +236,25 @@ export function Navigation() {
                             href="/"
                             className="text-2xl font-bold transition-all duration-300 relative group"
                         >
-                            <motion.span
-                                className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent hover:from-primary hover:via-foreground hover:to-primary transition-all duration-500 bg-[length:200%_auto] animate-gradient-shift"
-                                whileHover={{ scale: 1.1 }}
-                            >
-                                AS
-                            </motion.span>
+<motion.span
+  className="group inline-flex items-center gap-3 cursor-pointer"
+  whileHover={{ scale: 1.08 }}
+  transition={{ type: "spring", stiffness: 300 }}
+>
+  {/* Avatar */}
+  <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/30 transition-all duration-300 group-hover:ring-primary">
+    <img
+      src="/img/a4.png"
+      alt="Amanjot Singh"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  {/* Animated Gradient Initials */}
+  <span className="text-lg font-semibold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-shift transition-all duration-500 group-hover:from-primary group-hover:via-foreground group-hover:to-primary">
+    AS
+  </span>
+</motion.span>
 
                             {/* Glow effect on hover */}
                             <motion.div
@@ -223,12 +266,17 @@ export function Navigation() {
                     </motion.div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div
+                        className="hidden md:flex items-center space-x-1"
+                        onMouseLeave={() => setHoveredItem(null)}
+                    >
                         {navigation.map((item) => (
                             <DesktopNavItem
                                 key={item.name}
                                 item={item}
                                 pathname={pathname}
+                                hoveredItem={hoveredItem}
+                                onHover={setHoveredItem}
                             />
                         ))}
                     </div>
@@ -402,7 +450,7 @@ export function Navigation() {
                                 >
                                     <div className="mobile-nav-item text-center">
                                         <p className="text-xs text-muted-foreground/60 mt-1">
-                                            © 2025 Portfolio. All rights reserved.
+                                            © 2026 Portfolio. All rights reserved.
                                         </p>
                                     </div>
                                 </motion.div>
@@ -411,6 +459,13 @@ export function Navigation() {
                     </div>
                 </div>
             </nav>
+
+            {/* Scroll progress bar */}
+            <motion.div
+                className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary via-primary/80 to-primary/50 origin-left"
+                style={{ width: `${scrollProgress}%` }}
+                transition={{ ease: 'linear', duration: 0.1 }}
+            />
         </motion.header>
     )
 }

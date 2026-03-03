@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import {
   ArrowDown, Github, Linkedin, Mail, Sparkles, Code2,
   Palette,
@@ -16,7 +16,7 @@ import Btnd from '../buttons/btnd'
 const roles = [
   {
     text: 'UI/UX Designer',
-    color: 'from-cyan-600 via-sky-600 to-blue-600 dark:from-cyan-400 dark:via-sky-400 dark:to-blue-400',
+    color: 'from-pink-600 via-rose-500 to-purple-600 dark:from-pink-400 dark:via-rose-400 dark:to-purple-400',
     icon: Palette
   },
   {
@@ -26,7 +26,7 @@ const roles = [
   },
   {
     text: 'Freelancer',
-    color: 'from-cyan-600 via-sky-600 to-blue-600 dark:from-cyan-400 dark:via-sky-400 dark:to-blue-400',
+    color: 'from-emerald-600 via-teal-500 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400',
     icon: Brain
   }
 ]
@@ -40,19 +40,56 @@ export function HeroDynamic() {
   const textY = useTransform(scrollY, [0, 500], [0, 100])
   const opacity = useTransform(scrollY, [0, 200], [1, 0])
 
-  // Enhanced role rotation with smooth transitions
+  // Mouse parallax for floating orbs
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const springX = useSpring(mouseX, { stiffness: 40, damping: 20 })
+  const springY = useSpring(mouseY, { stiffness: 40, damping: 20 })
+
+  // Typewriter state
+  const fullDesc = "B.Tech CSE graduate skilled in software development, web technologies, and UI/UX. Passionate about building innovative, efficient solutions."
+  const [typedText, setTypedText] = useState('')
+  const [typingDone, setTypingDone] = useState(false)
+
+  // Role rotation + mouse parallax + typewriter
   useEffect(() => {
     setIsVisible(true)
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length)
-    }, 3000) // Slightly longer for better readability
-    return () => clearInterval(interval)
-  }, [])
+    }, 3000)
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set((e.clientX / window.innerWidth - 0.5) * 30)
+      mouseY.set((e.clientY / window.innerHeight - 0.5) * 30)
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+
+    let typeTimer: ReturnType<typeof setInterval>
+    const typeTimeout = setTimeout(() => {
+      let i = 0
+      typeTimer = setInterval(() => {
+        if (i < fullDesc.length) {
+          setTypedText(fullDesc.slice(0, i + 1))
+          i++
+        } else {
+          clearInterval(typeTimer)
+          setTypingDone(true)
+        }
+      }, 20)
+    }, 1800)
+
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('mousemove', handleMouseMove)
+      clearTimeout(typeTimeout)
+      clearInterval(typeTimer)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDownload = () => {
     // Create a temporary link element
     const link = document.createElement("a");
-    link.href = "/doc/Amanjot SIngh Cv - sep 2025.pdf";
+    link.href = "/doc/Amanjot_Singh_CV.pdf"; // Path to your CV file in the public folder
     link.download = "Amanjot_Singh_CV.pdf";
     document.body.appendChild(link);
     link.click();
@@ -83,8 +120,9 @@ export function HeroDynamic() {
         transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
       />
 
-      {/* Floating Orbs with improved animation */}
+      {/* Floating Orbs with improved animation + mouse parallax */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div className="absolute inset-0" style={{ x: springX, y: springY }}>
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
@@ -111,6 +149,7 @@ export function HeroDynamic() {
             initial={{ opacity: 0, scale: 0.8 }}
           />
         ))}
+        </motion.div>
       </div>
 
       {/* Animated particles with fixed positions */}
@@ -237,11 +276,44 @@ export function HeroDynamic() {
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed min-h-[3.5rem]"
           >
-            B.Tech CSE graduate skilled in software development, web technologies, and UI/UX. Passionate about building innovative, efficient solutions.
+            {typedText}
+            {!typingDone && (
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.7, repeat: Infinity }}
+                className="inline-block ml-0.5 text-primary font-light"
+              >|</motion.span>
+            )}
           </motion.p>
+
+          {/* Stats strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="flex justify-center items-center divide-x divide-border/60 rounded-xl border border-border/30 bg-muted/20 backdrop-blur-sm w-fit mx-auto"
+          >
+            {[
+              { value: '10+', label: 'Projects' },
+              { value: '15+', label: 'Technologies' },
+              { value: '2+', label: 'Years Exp.' },
+            ].map((stat, i) => (
+              <div key={i} className="px-6 py-3 text-center">
+                <motion.div
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.9 + i * 0.1, type: 'spring', stiffness: 200 }}
+                  className="text-xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
+                >
+                  {stat.value}
+                </motion.div>
+                <div className="text-xs text-muted-foreground uppercase tracking-widest mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
 
           {/* Buttons with enhanced animations */}
           <motion.div

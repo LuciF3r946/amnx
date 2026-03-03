@@ -14,12 +14,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Btna from '@/components/buttons/btna'
 
 
-// Animation helper with proper typing
+// Animation helpers
 const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
     transition: {
         duration: 0.4,
+        delay,
+        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number]
+    }
+})
+
+const fadeInView = (delay = 0) => ({
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-60px' } as { once: boolean; margin: string },
+    transition: {
+        duration: 0.5,
         delay,
         ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number]
     }
@@ -63,6 +74,15 @@ const experienceData = [
         title: 'UI/UX Designer',
         date: '2025 (6 Months)',
         description: 'Worked as a UI/UX Designer, where I became proficient in Figma and applied it to create user-friendly, visually appealing website interfaces. I collaborated with the team, learning prototyping and design systems to deliver best experiences.',
+        icon: Briefcase,
+        active: false
+    },
+    {
+        id: 'exp3',
+        company: 'Scalercell',
+        title: 'Software Developer',
+        date: 'Current 2026',
+        description: 'Development using React, Vue.js, and TypeScript, building scalable component-based architectures, implementing state management solutions, and collaborating on backend development using Swift to design and develop APIs.',
         icon: Briefcase,
         active: false
     }
@@ -163,10 +183,27 @@ const About = () => {
             <div className="min-h-screen py-12 pt-30">
                 <div className="container mx-auto px-4">
                     {/* Header */}
-                    <motion.div {...fadeUp(0)} className="text-center mb-16">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                    <motion.div {...fadeUp(0)} className="text-center mb-16 space-y-3">
+                        {/* <motion.div
+                            initial={{ opacity: 0, scale: 0.85 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.45, delay: 0.05 }}
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                            Available for opportunities
+                        </motion.div> */}
+                        <h1 className="text-4xl md:text-5xl font-bold">
                             About <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Me</span>
                         </h1>
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="text-muted-foreground text-lg max-w-xl mx-auto"
+                        >
+                            Developer · Designer · Creative Thinker
+                        </motion.p>
                     </motion.div>
 
                     {/* Main */}
@@ -176,16 +213,27 @@ const About = () => {
                             <Card className="sticky top-24 bg-white/5 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
                                 <CardHeader className="text-center">
                                     {/* Avatar */}
-                                    <div className="w-28 h-28 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full grid place-items-center text-3xl font-bold text-primary shadow-md">
-                                        AS
+                                    <div className="w-48 h-48 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full grid place-items-center text-3xl font-bold text-primary shadow-md overflow-hidden">
+                                        <img
+                                            src="/img/a3.png" // Change this to your actual image path
+                                            alt=""
+                                            className="w-full h-full object-cover rounded-full"
+                                        />
                                     </div>
 
                                     <CardTitle className="text-2xl font-semibold tracking-tight">
                                         Amanjot Singh
                                     </CardTitle>
                                     <CardDescription className="text-base text-muted-foreground">
-                                        Developer & Tech Enthusiast
+                                        Developer &amp; Tech Enthusiast
                                     </CardDescription>
+                                    <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs font-medium">
+                                        <span className="relative flex h-2 w-2">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                                        </span>
+                                        Open to Work
+                                    </div>
                                 </CardHeader>
 
                                 <CardContent className="space-y-4 pt-6">
@@ -218,7 +266,7 @@ const About = () => {
                                             <Calendar className="h-4 w-4 text-purple-500" />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-muted-foreground text-sm">21 years old</p>
+                                            <p className="text-muted-foreground text-sm">22 years old</p>
                                         </div>
                                     </motion.div>
 
@@ -245,8 +293,9 @@ const About = () => {
                         {/* Content */}
                         <motion.div {...fadeUp(0.15)} className="lg:col-span-2 space-y-8">
                             {/* Intro */}
-                            <Card>
-                                <CardContent className="prose prose-neutral dark:prose-invert max-w-none">
+                            <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/[0.03] to-purple-500/[0.03]">
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-purple-500 to-blue-500 rounded-l-xl" />
+                                <CardContent className="prose prose-neutral dark:prose-invert max-w-none pl-8">
                                     <p className="text-muted-foreground leading-relaxed">
                                         Building polished web experiences with React, Next.js, and Node.js—because users deserve fast, delightful, and reliable apps. Also because slow UIs raise blood pressure.
                                     </p>
@@ -265,18 +314,26 @@ const About = () => {
                                     </CardTitle>
                                     <CardDescription>Principles that keep code calm and users happy</CardDescription>
                                 </CardHeader>
-                                <CardContent className="grid gap-5 sm:grid-cols-2">
+                                <CardContent className="grid gap-4 sm:grid-cols-2">
                                     {values.map((v, i) => (
-                                        <motion.div key={v.title} {...fadeUp(0.2 + i * 0.05)} className="border-l-4 border-primary/20 pl-4">
+                                        <motion.div
+                                            key={v.title}
+                                            {...fadeInView(i * 0.07)}
+                                            whileHover={{ y: -3 }}
+                                            className="p-4 rounded-xl border border-primary/10 bg-gradient-to-br from-primary/[0.04] to-purple-500/[0.02] hover:border-primary/30 transition-colors duration-300 cursor-default"
+                                        >
+                                            <div className="w-7 h-7 rounded-lg bg-primary/15 flex items-center justify-center mb-2">
+                                                <span className="text-primary font-bold text-xs">{String(i + 1).padStart(2, '0')}</span>
+                                            </div>
                                             <h3 className="font-semibold mb-1">{v.title}</h3>
-                                            <p className="text-sm text-muted-foreground">{v.description}</p>
+                                            <p className="text-sm text-muted-foreground leading-relaxed">{v.description}</p>
                                         </motion.div>
                                     ))}
                                 </CardContent>
                             </Card>
 
                             {/* Interests */}
-                            <motion.div {...fadeUp(0.3)}>
+                            <motion.div {...fadeInView(0.1)}>
                                 <Card>
                                     <CardHeader>
                                         <CardTitle className="text-2xl flex items-center gap-2">
@@ -292,9 +349,12 @@ const About = () => {
                                             {interests.map((interest, i) => (
                                                 <motion.div
                                                     key={interest.name}
-                                                    whileHover={{ y: -4 }}
+                                                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ delay: i * 0.07, type: 'spring', stiffness: 260, damping: 18 }}
+                                                    whileHover={{ y: -5, scale: 1.06 }}
                                                     whileTap={{ scale: 0.95 }}
-                                                    {...fadeUp(i * 0.05)}
                                                 >
                                                     <div
                                                         className={`inline-flex items-center text-sm px-5 py-3 font-semibold rounded-full border-2 transition-all duration-300 cursor-default transform ${interest.color}`}
@@ -313,7 +373,7 @@ const About = () => {
                     </div>
 
                     {/* My Journey - Qualification Timeline */}
-                    <motion.div {...fadeUp(0.2)} className="mb-20">
+                    <motion.div {...fadeInView(0)} className="mb-20">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">
                                 My <span className="text-primary">Journey</span>
@@ -351,8 +411,9 @@ const About = () => {
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
                         className="text-center mt-16 sm:mt-20 pt-8 sm:pt-12 border-t border-border mobile-container"
                     >
                         <h3 className="mobile-heading-lg sm:text-3xl font-bold mb-4 text-foreground">Interested?</h3>
