@@ -241,7 +241,7 @@ export function Navigation() {
   whileHover={{ scale: 1.08 }}
   transition={{ type: "spring", stiffness: 300 }}
 >
-  {/* Avatar */}
+
   {/* <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/30 transition-all duration-300 group-hover:ring-primary">
     <img
       src="/img/a4.png"
