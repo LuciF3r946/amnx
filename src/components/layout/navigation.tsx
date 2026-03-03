@@ -242,13 +242,13 @@ export function Navigation() {
   transition={{ type: "spring", stiffness: 300 }}
 >
   {/* Avatar */}
-  <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/30 transition-all duration-300 group-hover:ring-primary">
+  {/* <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/30 transition-all duration-300 group-hover:ring-primary">
     <img
       src="/img/a4.png"
       alt="Amanjot Singh"
       className="w-full h-full object-cover"
     />
-  </div>
+  </div> */}
 
   {/* Animated Gradient Initials */}
   <span className="text-lg font-semibold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-shift transition-all duration-500 group-hover:from-primary group-hover:via-foreground group-hover:to-primary">

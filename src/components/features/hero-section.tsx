@@ -297,9 +297,9 @@ export function HeroDynamic() {
             className="flex justify-center items-center divide-x divide-border/60 rounded-xl border border-border/30 bg-muted/20 backdrop-blur-sm w-fit mx-auto"
           >
             {[
-              { value: '10+', label: 'Projects' },
+              { value: '12+', label: 'Projects' },
               { value: '15+', label: 'Technologies' },
-              { value: '2+', label: 'Years Exp.' },
+              { value: '1+', label: 'Years Exp.' },
             ].map((stat, i) => (
               <div key={i} className="px-6 py-3 text-center">
                 <motion.div

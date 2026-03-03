@@ -213,12 +213,14 @@ const About = () => {
                             <Card className="sticky top-24 bg-white/5 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
                                 <CardHeader className="text-center">
                                     {/* Avatar */}
-                                    <div className="w-48 h-48 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full grid place-items-center text-3xl font-bold text-primary shadow-md overflow-hidden">
+                                    {/* <div className="w-48 h-48 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full grid place-items-center text-3xl font-bold text-primary shadow-md overflow-hidden">
                                         <img
                                             src="/img/a3.png" // Change this to your actual image path
                                             alt=""
                                             className="w-full h-full object-cover rounded-full"
                                         />
+                                    </div> */}
+                                    <div className="w-28 h-28 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full grid place-items-center text-3xl font-bold text-primary shadow-md overflow-hidden">AS
                                     </div>
 
                                     <CardTitle className="text-2xl font-semibold tracking-tight">
